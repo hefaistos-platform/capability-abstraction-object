@@ -1,4 +1,4 @@
-# Registering `capability-abstraction` v4 on Dockerized MISP (misp.counterintel.cz)
+# Registering `capability-abstraction` v4 on Dockerized MISP
 
 This updates the already-registered `capability-abstraction` object template (id 475 as of
 2026-09-15 — MISP reassigns the numeric id on some reloads, always re-resolve it by `uuid`
