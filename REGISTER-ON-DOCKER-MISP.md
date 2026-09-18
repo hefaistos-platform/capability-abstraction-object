@@ -4,7 +4,7 @@ This updates the already-registered `capability-abstraction` object template (id
 2026-09-15 — MISP reassigns the numeric id on some reloads, always re-resolve it by `uuid`
 rather than trusting a hardcoded id; see step 6),
 uuid `9f2e6b8a-7c1d-4e3a-9b5f-1a2c3d4e5f60`) from v3 to **v4**, which adds two new required-in-practice
-fixed-vocabulary attributes (not carried on any v2 event yet — re-register before the next
+fixed-vocabulary attributes (not carried on any v2/v3 event yet — re-register before the next
 `--push` run so these two land in MISP instead of silently being new text the instance has
 never seen before):
 
