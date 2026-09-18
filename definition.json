@@ -1,0 +1,171 @@
+{
+    "attributes": {
+        "hypothesis": {
+            "categories": ["Other"],
+            "description": "The boundary-crossing claim being investigated (the starting question of the Capability Abstraction methodology, before any tool/technique is named).",
+            "misp-attribute": "text",
+            "sane_default": [],
+            "ui-priority": 1
+        },
+        "chokepoint": {
+            "categories": ["Other"],
+            "description": "The invariant control boundary the hypothesis crosses \u2014 must survive swapping the underlying API/tool (Survives-Tool-Swap Check).",
+            "misp-attribute": "text",
+            "sane_default": [],
+            "ui-priority": 1
+        },
+        "residue-type": {
+            "categories": ["Other"],
+            "description": "Category of observable/influenceable evidence left at the chokepoint. One of: telemetry, policy, user-interaction, object-access, protocol, credential, timing, state-transition.",
+            "misp-attribute": "text",
+            "sane_default": [
+                "telemetry",
+                "policy",
+                "user-interaction",
+                "object-access",
+                "protocol",
+                "credential",
+                "timing",
+                "state-transition"
+            ],
+            "ui-priority": 1
+        },
+        "residue-description": {
+            "categories": ["Other"],
+            "description": "What is actually observable or influenceable at the chokepoint \u2014 the concrete evidence chain, independent of any specific tool.",
+            "misp-attribute": "text",
+            "ui-priority": 1
+        },
+        "survives-tool-swap": {
+            "categories": ["Other"],
+            "description": "Whether the chokepoint/residue pair still holds if the underlying API or tool is swapped for an equivalent one. True/false per the methodology's own completeness check.",
+            "misp-attribute": "boolean",
+            "ui-priority": 1
+        },
+        "abstraction-layer": {
+            "categories": ["Other"],
+            "description": "SpecterOps 'On Detection: Tactical to Functional' / Summiting the Pyramid capability-abstraction layer this hypothesis is pinned to. Fixed vocabulary only \u2014 never a free-text category like 'Dataset'.",
+            "misp-attribute": "text",
+            "sane_default": [
+                "Tool/Binary",
+                "API/Export",
+                "COM/IPC",
+                "Registry Object",
+                "Protocol",
+                "Process Behavior",
+                "Network Behavior"
+            ],
+            "ui-priority": 1
+        },
+        "robustness-level": {
+            "categories": ["Other"],
+            "description": "Center for Threat-Informed Defense 'Summiting the Pyramid' robustness level (https://center-for-threat-informed-defense.github.io/summiting-the-pyramid/). Fixed vocabulary only, verbatim CTID level names \u2014 there is no Medium/High rating.",
+            "misp-attribute": "text",
+            "sane_default": [
+                "Level 1: Ephemeral",
+                "Level 2: Implementation / Attacker-Controlled",
+                "Level 3: System-Constrained Interaction",
+                "Level 4: Low-Variance Behaviors / Core Sometimes",
+                "Level 5: Invariant Behaviors / Core to Technique"
+            ],
+            "ui-priority": 1
+        },
+        "event-robustness-column": {
+            "categories": ["Other"],
+            "description": "Center for Threat-Informed Defense 'Summiting the Pyramid' event robustness column \u2014 where the event data originates. Host-based: A (Application), U (User-Mode), K (Kernel-Mode). Network traffic: P (Payload Visibility), H (Header Visibility). Fixed vocabulary only. Report alongside robustness-level as a combined code (e.g. Level 5 + Column K = '5K').",
+            "misp-attribute": "text",
+            "sane_default": ["A", "U", "K", "P", "H"],
+            "ui-priority": 1
+        },
+        "attack-technique-id": {
+            "categories": ["External analysis"],
+            "description": "Downstream ATT&CK technique mapping, applied LAST per doctrine (after hypothesis/chokepoint/residue are established). Prefer a MISP Galaxy cluster reference over this attribute when the target instance has ATT&CK galaxies enabled; use this attribute as a portable fallback for instances/exports without galaxy support.",
+            "misp-attribute": "text",
+            "disable_correlation": false,
+            "multiple": true,
+            "ui-priority": 1
+        },
+        "engage-activity-id": {
+            "categories": ["External analysis"],
+            "description": "MITRE Engage activity ID, when the hypothesis is deception-relevant.",
+            "misp-attribute": "text",
+            "multiple": true,
+            "ui-priority": 0
+        },
+        "title": {
+            "categories": ["Other"],
+            "description": "Human-readable title. Maps directly to the HEFAISTOS Waiting Room Partner API 'title' field for lossless round-trip.",
+            "misp-attribute": "text",
+            "ui-priority": 1
+        },
+        "short-description": {
+            "categories": ["Other"],
+            "description": "Short summary. Maps directly to the HEFAISTOS Waiting Room Partner API 'short_description' field.",
+            "misp-attribute": "text",
+            "ui-priority": 1
+        },
+        "detection-objective": {
+            "categories": ["Other"],
+            "description": "What the resulting detection is meant to catch. Maps directly to the HEFAISTOS Waiting Room Partner API 'detection_objective' field.",
+            "misp-attribute": "text",
+            "ui-priority": 0
+        },
+        "estimated-detection-complexity": {
+            "categories": ["Other"],
+            "description": "Rough engineering-effort estimate for building the detection: low, medium, high. Maps to the HEFAISTOS Partner API 'estimated_detection_complexity' field.",
+            "misp-attribute": "text",
+            "sane_default": ["low", "medium", "high"],
+            "ui-priority": 0
+        },
+        "hefaistos-layer-id": {
+            "categories": ["Other"],
+            "description": "Ties this object back to a HEX v2.0 capability_abstraction.layers[].layer_id once promoted into a HEFAISTOS Workbench. Left empty on initial creation \u2014 populated only after promotion, for traceability back to MISP from HEFAISTOS.",
+            "misp-attribute": "text",
+            "ui-priority": 0
+        },
+        "hefaistos-workbench-ref": {
+            "categories": ["Other"],
+            "description": "Link back to the originating HEFAISTOS Workbench/Waiting Room item, once promoted.",
+            "misp-attribute": "link",
+            "ui-priority": 0
+        },
+        "source-lane": {
+            "categories": ["Other"],
+            "description": "Which Hermes/Capability Abstraction lane produced this object (e.g. daily-capability-abstraction-master-self-improvement, weekly-capability-abstraction-implementer). For provenance/audit only.",
+            "misp-attribute": "text",
+            "ui-priority": 0
+        },
+        "detection-query": {
+            "categories": ["Other"],
+            "description": "The raw detection query/rule text (KQL, EQL, SPL, Sigma, etc.) that this hypothesis is grounded in or intended to produce. Kept as plain text, language-agnostic \u2014 no attempt to normalize to a single query DSL. Populated by producers like Arkona Forge's 'to-misp' command; left empty for hypothesis-only entries (e.g. the daily Capability Abstraction research lane).",
+            "misp-attribute": "text",
+            "ui-priority": 0
+        },
+        "detection-query-language": {
+            "categories": ["Other"],
+            "description": "The query language of detection-query (e.g. kql, eql, spl, sigma, wazuh). For display/syntax-highlighting context only.",
+            "misp-attribute": "text",
+            "sane_default": ["kql", "eql", "spl", "sigma", "wazuh"],
+            "ui-priority": 0
+        },
+        "quality-scorecard-checked": {
+            "categories": ["Other"],
+            "description": "Whether attack-technique-id/engage-activity-id values were validated against the local ATT&CK/Engage reference files by the capability-abstraction quality scorecard before this object was created. False/absent means unvalidated \u2014 downstream consumers should treat ATT&CK/Engage IDs as unverified until this is true.",
+            "misp-attribute": "boolean",
+            "ui-priority": 0
+        }
+    },
+    "description": "A capability-abstraction hypothesis (chokepoint + residue pair) produced by the Capability Abstraction detection-engineering methodology, structured for round-trip compatibility with HEFAISTOS Waiting Room import (via importWaitingCasesFromMisp) and the HEFAISTOS Partner Integration API field vocabulary. ATT&CK/Engage mapping is deliberately downstream/optional per doctrine: hypothesis -> capability abstraction -> invariant chokepoint -> residue -> detection/deception -> ATT&CK last.",
+    "meta-category": "detection",
+    "name": "capability-abstraction",
+    "requiredOneOf": [
+        "hypothesis"
+    ],
+    "required": [
+        "chokepoint",
+        "residue-type",
+        "residue-description"
+    ],
+    "uuid": "9f2e6b8a-7c1d-4e3a-9b5f-1a2c3d4e5f60",
+    "version": 4
+}
